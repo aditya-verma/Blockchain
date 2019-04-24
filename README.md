@@ -8,4 +8,4 @@ This project is for my completion of 6th semester Distributed Systems course. Th
 * Update the IP address of the file server machine in blockchain.py
 * Run blockchain.py on the local machines or networked machines
 * Open <+address of the machine on which blockchain.py is running>:5000 on the browser eg. http://localhost:5000
-* ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `#f03c15`
+* ![#f03c15](https://placehold.it/15/f03c15/000000?text=+hello) `#f03c15`
