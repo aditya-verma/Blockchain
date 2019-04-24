@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+</head>
+<body background="{{ url_for('static', filename='blockchain.jpg') }}">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">IMAGE BLOCKCHAIN</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/mycertificates">My Certificates</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">More Features coming soon!</a>
+            </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<main role="main" class="container mt-5 h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="card-group mt-5">
+            <div class="col-md-4">
+                <div class="card border-primary mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-header">Upload Image</div>
+                    <div class="card-body text-primary text-center">
+                        <h5 class="card-title">Fill details in the image</h5>
+                        <br>
+                        <form action="/dashboard/createnewchain" method="post">
+                            <div class="form-row text-center">
+                                <input class="form-control" type="text" placeholder="Name" name="nameform">
+                            </div>
+                            <br>
+                            <div class="form-row text-center">
+                                <input class="form-control" type="text" placeholder="Roll number" name="rollnumberform">
+                            </div>
+                            <br>
+                            <div class="form-row text-center">
+                                <input class="form-control" type="text" placeholder="CGPA" name="cgpaform">
+                            </div>
+                            <br>
+                            <div class="form-row text-center">
+                                <button class="btn btn-primary" type="submit" value="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-primary mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-header">Resolve Chain</div>
+                    <div class="card-body text-primary">
+                        <h5 class="card-title">Click here to resolve chain</h5>
+                        <a href="/dashboard/resolve"><span style="font-size: 5em;"><i class="fas fa-retweet"></i></span></a>
+                        {%if message%}
+                        <form>
+                            <br>
+                            <div class="form-row text-center">
+                                <input class="form-control" type="text" value="{{message}}" disabled>
+                            </div>
+                        </form>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-primary mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-header">Register new node</div>
+                    <div class="card-body text-primary">
+                        <h5 class="card-title">Enter the address of new node</h5>
+                        <form class="form-group" method="post" action="/dashboard/register">
+                            <div class="form-row text-center">
+                                <input class="form-control" type="text" placeholder="IP Address" name="address"></div>
+                            <br>
+                            <div class="form-row text-center">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                            {% if registermessage %}
+                            <br>
+                            <div >
+                                <input class="form-control" type="text" value="{{registermessage}}" disabled>
+                            </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" hidden>
+                <div class="card border-primary mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-header">Register this device on file server</div>
+                    <div class="card-body text-primary">
+                        <h5 class="card-title">Primary card title</h5>
+                        <span style="font-size: 5em; "><i class="fas fa-cash-register"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
