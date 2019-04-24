@@ -7,4 +7,4 @@ This project is for my completion of 6th semester Distributed Systems course. Th
     3. Run fileserver.py on the on the remote machine which will hold the images of all the distributed systems
     4. Update the IP address of the file server machine in blockchain.py
     5. Run blockchain.py on the local machines or networked machines
-    6. Open <address of the machine on which blockchain.py is running>:5000 on the browser eg. http://localhost:5000
+    6. Open <+address of the machine on which blockchain.py is running>:5000 on the browser eg. http://localhost:5000
